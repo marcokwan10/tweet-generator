@@ -62,6 +62,3 @@ function App() {
 }
 
 export default App;
-
-//Top 3 Rock artist in USA
-//write an angry tweet about Elon
