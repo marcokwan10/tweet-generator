@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEarthAmericas, faPoll, faUser } from "@fortawesome/free-solid-svg-icons";
-import { faImage, faFaceSmile, faMap, faCalendarPlus, faFolder } from "@fortawesome/free-regular-svg-icons";
+import { faEarthAmericas, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faFaceSmile, faMap, faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
 
 function TweetsResult({ tweet }) {
 	const [prompt, result] = tweet;
