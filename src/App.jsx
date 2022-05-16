@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./app.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./components/Header";
 import TweetsResult from "./components/TweetsResult";
@@ -31,7 +33,7 @@ function App() {
 		});
 
 		const data = await res.json();
-		setTweets((prev) => [...prev, [prompt, data.choices[0].text]]);
+		setTweets((prev) => [[prompt, data.choices[0].text], ...prev]);
 		setEmotion("");
 		setPerson("");
 	};
@@ -40,18 +42,19 @@ function App() {
 		<div className="App">
 			<Header />
 			<div className="main-container">
-				<div className="generate-container">
-					<div className="prompt-container">
-						<h1>Write a</h1>
-						<input type="text" value={emotion} onChange={(e) => setEmotion(e.target.value)} />
-						<h1>tweet about</h1>
-						<input type="text" value={person} onChange={(e) => setPerson(e.target.value)} />
-					</div>
-					<button onClick={submitHandler}>Submit</button>
+				<div className="prompt-container">
+					<h1 id="write-a">Write a</h1>
+					<input id="emotion" type="text" value={emotion} onChange={(e) => setEmotion(e.target.value)} />
+					<h1 id="tweet">tweet</h1>
+					<h1 id="about">about</h1>
+					<h1 id="person">
+						<input id="person-input" type="text" value={person} onChange={(e) => setPerson(e.target.value)} />.
+					</h1>
+					<FontAwesomeIcon onClick={submitHandler} size="4x" id="submit" icon={faCirclePlus} />
 				</div>
 
-				<div className="generated-container">
-					<h1>your generated tweets</h1>
+				<div className="tweets-container">
+					<h2>Your generated tweets:</h2>
 					{tweets.map((tweet) => (
 						<TweetsResult tweet={tweet} />
 					))}

@@ -30,8 +30,7 @@ html {
   --twitter-blue: rgb(32, 155, 240);
   --border-color: rgb(49, 50, 54);
 
-  --backgroundColor: black;
-  --headerColor: var(--grey900);
+  --backgroundColor: rgb(11, 11, 11);
   --textColor: var(--grey200);
 
   /* fonts */
@@ -65,14 +64,14 @@ h5 {
 
 h1 {
   margin-top: 0;
-  font-size: 3.052rem;
+  font-size: 4.5rem;
   font-weight: 700;
   letter-spacing: var(--letter-spacing);
-  margin-bottom: 1.25rem;
 }
 
 h2 {
   font-size: 2.441rem;
+  font-weight: 700;
 }
 
 h3 {
@@ -101,7 +100,7 @@ Header
   display: flex;
   justify-content: space-between;
   height: 10vh;
-    border: 1px solid yellow;
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* 
@@ -114,27 +113,102 @@ main
   display: flex;
   justify-content: space-between;
   height: 90vh;
+
 }
 
 /* 
 ======================
-generate side
+prompt side
 ======================
 */
 
-.generate-container {
+.prompt-container {
   width: 65%;
+  height: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid var(--border-color);
+  display: grid;
+  grid-template-rows: 1fr repeat(6, 2fr);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#write-a {
+  grid-row: 2 / 3;
+  grid-column: 1 / 3;
+  align-self: center;
+
+}
+
+#emotion, #person-input {
+  grid-row: 3 / 4;
+  grid-column: 3 / 5;
+  width: 80%;
+  text-decoration: none;
+  background-color: inherit;
+  border: none;
+  border-bottom: 2px solid var(--grey200);
+  color: var(--textColor);
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing);
+  justify-self: center;
+  text-align: center;
+
+}
+
+#emotion, #person-input:focus{
+  outline: none;
+}
+
+#tweet {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+  justify-self: start;
+  align-self: center;
+  margin-left: 1rem;
+}
+
+#about {
+  grid-row: 5 / 6;
+  grid-column: 2 / 5;
+  justify-self: center;
+  align-self: flex-end;
+}
+
+#person {
+  width: 90%;
+  grid-row: 6 / 7;
+  grid-column: 1 / 4;
+  align-self: flex-end;
+  margin-left: 1rem;
+  justify-content: center;
+}
+
+#submit{
+  grid-row: 7 / 8;
+  grid-column: 4 / 5;
+  color: var(--twitter-blue);
+  justify-self: center;
+}
+#submit:hover {
+  color: var(--grey200);
+  cursor: pointer;
 }
 
 /* 
 ======================
-generated side
+tweet side
 ======================
 */
 
-.generated-container {
+.tweets-container {
   width: 35%;
-  margin-right: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow: scroll;
+  background-color: black;
 }
 
 /* 
@@ -147,6 +221,8 @@ Tweet
   border: 1px solid var(--border-color);
   padding: 1rem;
   border-radius: 15px;
+  overflow: scroll;
+  margin-bottom: 1rem;
 }
 
 #prompt {
@@ -212,7 +288,7 @@ Tweet
 }
 
 .tweet-button {
-  color: var(--grey100);
+  color: var(--grey200);
   background-color: var(--twitter-blue);
   border: none;
   padding: 0.6rem 1.2rem;
