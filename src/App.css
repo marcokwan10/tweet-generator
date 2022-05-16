@@ -8,7 +8,6 @@
 html {
   font-size: 100%;
 }
-
 /*16px*/
 
 :root {
@@ -23,8 +22,6 @@ html {
   --grey800: #1e293b;
   --grey900: #0f172a;
 
-  --black: #222;
-  --white: #fff;
   --twitter-avatar: #677685;
   --twitter-avatar-bg: rgb(204, 214, 221);
   --twitter-blue: rgb(32, 155, 240);
@@ -71,11 +68,12 @@ h1 {
 
 h2 {
   font-size: 2.441rem;
-  font-weight: 700;
+  font-weight: 100;
 }
 
 h3 {
   font-size: 1.953rem;
+  font-weight: 100;
 }
 
 h4 {
@@ -99,8 +97,10 @@ Header
 .header-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 10vh;
   border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
 }
 
 /* 
@@ -204,11 +204,14 @@ tweet side
 
 .tweets-container {
   width: 35%;
-  margin-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   overflow: scroll;
-  background-color: black;
+  background-color: var(--backgroundColor);
+}
+
+.tweets-container h2 {
+  padding: 1rem 1rem 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  /* border-bottom: 1px solid var(--border-color); */
 }
 
 /* 
@@ -218,6 +221,8 @@ Tweet
 */
 
 .tweet-container {
+  margin-left: 1rem;
+  margin-right: 1rem;
   border: 1px solid var(--border-color);
   padding: 1rem;
   border-radius: 15px;
