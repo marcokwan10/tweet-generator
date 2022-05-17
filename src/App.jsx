@@ -4,14 +4,17 @@ import "./app.css";
 import Header from "./components/Header";
 import Prompt from "./components/Prompt";
 import TweetsResult from "./components/TweetsResult";
+import Loading from "./components/Loading";
 
 function App() {
 	const [emotion, setEmotion] = useState("");
 	const [person, setPerson] = useState("");
 	const [tweets, setTweets] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
+		setIsLoading(true);
 		const prompt = `Write a ${emotion} tweet about ${person}.`;
 		const config = {
 			prompt: prompt,
@@ -35,10 +38,12 @@ function App() {
 		setTweets((prev) => [[prompt, data.choices[0].text], ...prev]);
 		setEmotion("");
 		setPerson("");
+		setIsLoading(false);
 	};
 
 	return (
 		<div className="App">
+			{isLoading && <Loading />}
 			<Header />
 			<div className="main-container">
 				<Prompt

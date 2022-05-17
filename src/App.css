@@ -24,7 +24,7 @@ html {
 
   --twitter-avatar: #677685;
   --twitter-avatar-bg: rgb(204, 214, 221);
-  --twitter-blue: rgb(32, 155, 240);
+  --twitter-blue: #209bf0;
   --border-color: rgb(49, 50, 54);
 
   --backgroundColor: rgb(11, 11, 11);
@@ -87,6 +87,13 @@ h5 {
 .App {
   height: 100vh;
 }
+
+.loading {
+  position: fixed;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+}
+
 
 /* 
 ===========
@@ -333,3 +340,4 @@ Tweet
       transform: translateX(0%);
     }
 }
+
