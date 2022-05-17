@@ -4,18 +4,17 @@ import { faEarthAmericas, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faImage, faFaceSmile, faMap, faCalendarPlus, faClipboard } from "@fortawesome/free-regular-svg-icons";
 
 function TweetsResult({ tweet }) {
-	const [prompt, result] = tweet;
 	const [alert, setAlert] = useState(false);
 
 	const tweetButtonHandler = () => {
-		navigator.clipboard.writeText(result);
+		navigator.clipboard.writeText(tweet.result);
 		setAlert(true);
 		setTimeout(() => setAlert(false), 2000);
 	};
 
 	return (
 		<div className="tweet-container">
-			<h4 id="prompt">{prompt}</h4>
+			<h4 id="prompt">{tweet.prompt}</h4>
 			<div className="tweet">
 				<div className="tweet-avatar">
 					<div className="circle-bg">
@@ -23,7 +22,7 @@ function TweetsResult({ tweet }) {
 					</div>
 				</div>
 				<div className="tweet-content">
-					<h5>{result}</h5>
+					<h5>{tweet.result}</h5>
 					<p>
 						<FontAwesomeIcon icon={faEarthAmericas} id="globe" />
 						Everyone can reply

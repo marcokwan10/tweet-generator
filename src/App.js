@@ -9,7 +9,10 @@ import Loading from "./components/Loading";
 function App() {
 	const [emotion, setEmotion] = useState("");
 	const [person, setPerson] = useState("");
-	const [tweets, setTweets] = useState([]);
+	const [tweets, setTweets] = useState(() => {
+		const initialValue = JSON.parse(localStorage.getItem("tweets"));
+		return initialValue || [];
+	});
 	const [isLoading, setIsLoading] = useState(false);
 
 	const submitHandler = async (e) => {
@@ -24,7 +27,6 @@ function App() {
 			frequency_penalty: 0.0,
 			presence_penalty: 0.0,
 		};
-
 		const res = await fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
 			method: "POST",
 			headers: {
@@ -33,9 +35,25 @@ function App() {
 			},
 			body: JSON.stringify(config),
 		});
-
 		const data = await res.json();
-		setTweets((prev) => [[prompt, data.choices[0].text], ...prev]);
+
+		//using data.id as a key for tweets.map
+		const result = { prompt, result: data.choices[0].text, id: data.id };
+
+		//update state
+		setTweets((prev) => [result, ...prev]);
+
+		//utilize local storage to store prompt, tweet and key
+		let tweets = localStorage.getItem("tweets");
+		if (tweets) {
+			tweets = JSON.parse(tweets);
+			const updatedTweets = [result, ...tweets];
+			localStorage.setItem("tweets", JSON.stringify(updatedTweets));
+		} else {
+			const newTweets = [result];
+			localStorage.setItem("tweets", JSON.stringify(newTweets));
+		}
+
 		setEmotion("");
 		setPerson("");
 		setIsLoading(false);
@@ -57,7 +75,7 @@ function App() {
 				<div className="tweets-container">
 					<h3>Tweets Generated:</h3>
 					{tweets.map((tweet) => (
-						<TweetsResult tweet={tweet} />
+						<TweetsResult tweet={tweet} key={tweet.id} />
 					))}
 				</div>
 			</div>
