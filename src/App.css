@@ -140,9 +140,20 @@ prompt side
 
 }
 
-#emotion, #person-input {
+#emotion {
   grid-row: 3 / 4;
   grid-column: 3 / 5;
+}
+
+#person {
+  grid-row: 6 / 7;
+  grid-column: 1 / 4;
+  margin-left: 1rem;
+  display: flex;
+  align-items: baseline;
+}
+
+#emotion input, #person input {
   width: 80%;
   text-decoration: none;
   background-color: inherit;
@@ -154,10 +165,12 @@ prompt side
   letter-spacing: var(--letter-spacing);
   justify-self: center;
   text-align: center;
-
+  margin: 2rem;
+  padding-top: 1rem;
+  caret-color: var(--twitter-blue);
 }
 
-#emotion, #person-input:focus{
+#emotion input, #person input:focus{
   outline: none;
 }
 
@@ -176,24 +189,19 @@ prompt side
   align-self: flex-end;
 }
 
-#person {
-  width: 90%;
-  grid-row: 6 / 7;
-  grid-column: 1 / 4;
-  align-self: flex-end;
-  margin-left: 1rem;
-  justify-content: center;
-}
-
 #submit{
   grid-row: 7 / 8;
   grid-column: 4 / 5;
   color: var(--twitter-blue);
+  background-color: var(--grey200);
+  border-radius: 50%;
   justify-self: center;
 }
+
 #submit:hover {
-  color: var(--grey200);
   cursor: pointer;
+  background-color: var(--backgroundColor);
+  border-radius: 50%;
 }
 
 /* 
@@ -208,10 +216,9 @@ tweet side
   background-color: var(--backgroundColor);
 }
 
-.tweets-container h2 {
+.tweets-container h3 {
   padding: 1rem 1rem 0.5rem 1rem;
   margin-bottom: 0.5rem;
-  /* border-bottom: 1px solid var(--border-color); */
 }
 
 /* 
@@ -292,6 +299,10 @@ Tweet
   color: var(--twitter-blue);
 }
 
+.tweet-icon-list p {
+  margin: 0;
+}
+
 .tweet-button {
   color: var(--grey200);
   background-color: var(--twitter-blue);
@@ -302,4 +313,23 @@ Tweet
   border-radius: 20px;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+.tweet-button:hover {
+  color: var(--backgroundColor);
+  cursor: pointer;
+}
+
+.tweet-alert {
+  animation: slide 0.25s ;
+}
+
+@keyframes slide {
+  from {
+      transform: translateX(100%);
+    }
+  
+    to {
+      transform: translateX(0%);
+    }
 }

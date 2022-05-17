@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./app.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./components/Header";
 import Prompt from "./components/Prompt";
@@ -14,7 +12,7 @@ function App() {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		const prompt = `Write a ${emotion} tweet about ${person}`;
+		const prompt = `Write a ${emotion} tweet about ${person}.`;
 		const config = {
 			prompt: prompt,
 			temperature: 0.5,
@@ -52,7 +50,7 @@ function App() {
 				/>
 
 				<div className="tweets-container">
-					<h2>Tweets Generated:</h2>
+					<h3>Tweets Generated:</h3>
 					{tweets.map((tweet) => (
 						<TweetsResult tweet={tweet} />
 					))}

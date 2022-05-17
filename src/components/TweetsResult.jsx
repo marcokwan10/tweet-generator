@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarthAmericas, faUser } from "@fortawesome/free-solid-svg-icons";
-import { faImage, faFaceSmile, faMap, faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
+import { faImage, faFaceSmile, faMap, faCalendarPlus, faClipboard } from "@fortawesome/free-regular-svg-icons";
 
 function TweetsResult({ tweet }) {
 	const [prompt, result] = tweet;
+	const [alert, setAlert] = useState(false);
+
+	const tweetButtonHandler = () => {
+		navigator.clipboard.writeText(result);
+		setAlert(true);
+		setTimeout(() => setAlert(false), 2000);
+	};
+
 	return (
 		<div className="tweet-container">
 			<h4 id="prompt">{prompt}</h4>
@@ -28,7 +36,14 @@ function TweetsResult({ tweet }) {
 							<FontAwesomeIcon icon={faCalendarPlus} className="tweet-icon" />
 							<FontAwesomeIcon icon={faMap} className="tweet-icon" />
 						</div>
-						<button className="tweet-button">Tweet</button>
+						{alert && (
+							<p className="tweet-alert">
+								Copied <FontAwesomeIcon icon={faClipboard} />
+							</p>
+						)}
+						<button onClick={tweetButtonHandler} className="tweet-button">
+							Tweet
+						</button>
 					</div>
 				</div>
 			</div>
