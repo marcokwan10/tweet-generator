@@ -1,4 +1,4 @@
-# Generator
+# Tweet Generator
 
 Deployed site: https://tweet-generator-marcokwan10.vercel.app/
 
